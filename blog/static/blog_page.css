@@ -1,0 +1,44 @@
+body{
+    background: url("img/background.jpg") 0 / cover fixed;
+}
+.blog:not(:last-child) {
+    margin-bottom: 1.5em;
+    border-bottom: 1px solid rgba(252, 250, 255, 0.7);
+    padding-bottom: 1em;
+}
+
+.blog h3 {
+    margin-top: 0.5em;
+}
+
+.blog_info{
+    margin-bottom: 0;
+}
+
+.text-style{
+    text-indent: 2em;
+}
+
+.paginator-style{
+    text-align: center;
+}
+
+.blog_pre_next li{
+    display: inline-block;
+}
+
+.blog_pre_next ul{
+    display: none;
+}
+
+.blog_pre{
+    float: left;
+}
+
+.blog_next{
+    float:right;
+}
+
+.blog_background{
+    background: rgba(234, 240, 255, 0.8);
+}

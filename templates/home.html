@@ -1,0 +1,95 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--针对IE浏览器使用最新标签-->
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!--响应式布局-->
+    <title>Hk_Mayfly博客|首页</title>
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <script type="text/javascript" src="{% static 'jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="nabar-header">
+            <a class="navbar-brand" href="{% url 'home' %}">Hk_Mayfly的博客</a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#target-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="target-1">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="{% url 'home' %}">首页</a>
+                </li>
+                <li>
+                    <a href="{% url 'blog_list' %}">博客</a>
+                </li>
+                <li>
+                    <a href="#">每日一图</a>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Searchヾ(´∀`o)+">
+                </div>
+                <button type="submit" class="btn btn-default">搜索</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{% url 'about_me' %}">自我介绍</a></li>
+                <li class="dropdown">
+                    {% if request.session.is_login %}
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            在线：{{ request.session.user_name }}
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{%  url 'register' %}">注册</a></li>
+                             <li><a href="http://127.0.0.1:8000/admin/">管理员</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="{% url 'logout' %}">退出</a></li>
+                        </ul>
+                    {% else %}
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            无人登录
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'login' %}">登录</a></li>
+                            <li><a href="{% url 'register' %}">注册</a></li>
+                            <li><a href="http://127.0.0.1:8000/admin/">管理员</a></li>
+                        </ul>
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="img-responsive home_pic">
+    <img src="{% static 'img/home.gif' %}">
+</div>
+<div class="home-content">
+    <h3>Hk_Mayfly的博客</h3>
+</div>
+
+<div>
+    <!-- 音乐播放器 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+    <div class="aplayer" data-id="2834943612" data-server="netease" data-type="playlist" data-fixed="true"
+         data-autoplay="true"
+         data-volume="0.6"></div>
+    <script>var meting_api = 'http://api.mizore.cn/meting/api.php?server=:server&type=:type&id=:id'</script>
+    <script src="http://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script>
+
+</div>
+</body>
+</html>

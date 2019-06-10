@@ -1,0 +1,77 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--针对IE浏览器使用最新标签-->
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!--响应式布局-->
+    <title>Hk_Mayfly博客|首页</title>
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <script type="text/javascript" src="{% static 'jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top" role="navigation"><!--最后的那个类是让导航下拉列表一直悬浮顶部-->
+    <div class="container-fluid">
+        <div class="nabar-header">
+            <a class="navbar-brand" href="{% url 'home' %}">个人博客网站</a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#target-1" aria-expanded="false"><!--当屏幕变小。导航栏变成下拉列表-->
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="target-1">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="{% url 'home' %}">首页</a>
+                </li>
+                <li>
+                    <a href="{% url 'blog_list' %}">博客</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">自我介绍</a></li>
+                <li class="dropdown">
+                    {% if request.session.is_login %}
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            在线：{{ request.session.user_name }}
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'register' %}">注册</a></li>
+                            <li><a href="#">管理员</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">退出</a></li>
+                        </ul>
+                    {% else %}
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            无人登录
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'login' %}">登录</a></li>
+                            <li><a href="{% url 'register' %}">注册</a></li>
+                            <li><a href="#">管理员</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">退出</a></li>
+                        </ul>
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="home-content">
+    <h3>Hk_Mayfly| Reserve | Blog</h3>
+</div>
+<div class="pic_style">
+    <img src="{% static 'home_pic.gif' %}">
+</div>
+</body>
+</html>

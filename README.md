@@ -1,2 +1,0 @@
-# mysite
-test-blog-project

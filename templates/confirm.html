@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--针对IE浏览器使用最新标签-->
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!--响应式布局-->
+    <title>激活账户</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <script type="text/javascript" src="{% static 'jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</head>
+<body>
+{% if info %}
+    <div class="alert alert-success" role="alert">
+        <h3>{{ message }}</h3>
+        <h4>{{ jump }}，若未跳转，请手动点击：<a href="{% url 'login' %}" class="alert-link">跳转登录</a></h4>
+    </div>
+    <script>
+        window.setTimeout("window.location='/user/login/'", 5000);
+    </script>
+{% else %}
+    <div class="alert alert-danger" role="alert">
+        <h2>{{ message }}</h2>
+        <h4>{{ jump }}，若未跳转，请手动点击：<a href="{% url 'home' %}" class="alert-link">跳转首页</a></h4>
+    </div>
+    <script>
+    window.setTimeout("window.location='/user/register/'", 5000);
+</script>
+{% endif %}
+</body>
+</html>

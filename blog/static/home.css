@@ -1,0 +1,17 @@
+.home_pic{
+    position: absolute;
+    top: 30%;
+    transform: translate(-50%, -50%);
+    left: 36%;
+}
+
+.home-content h3 {
+    font-size: 320%;
+    font-family: 忘羡一曲终;
+    position: absolute;
+    top: 30%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    font-weight: bold;
+    color: #000000;
+}

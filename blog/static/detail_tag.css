@@ -1,0 +1,10 @@
+.tag_style li{
+    display: inline-block;
+    margin-right: 1em;
+}
+
+.tag_style ul{
+    list-style-type: none;
+    margin-bottom: 2em;
+}
+
