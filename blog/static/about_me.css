@@ -132,3 +132,9 @@ body {
     font-weight: bold;
     color: wheat;
 }
+
+
+/*导航栏样式*/
+.bg_color{
+    background-color: rgba(252, 250, 255, 0.8) !important;
+}

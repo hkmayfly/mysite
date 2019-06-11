@@ -16,8 +16,8 @@ class User(models.Model):
 
     class Meta:
         ordering = ['c_time']
-        verbose_name = '用户'
-        verbose_name_plural = '用户'
+        verbose_name = '注册用户'
+        verbose_name_plural = '注册用户'
 
 
 class ConfirmString(models.Model):  # 一对一保存用户与注册码之间的关系

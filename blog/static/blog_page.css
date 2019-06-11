@@ -1,6 +1,7 @@
-body{
+body {
     background: url("img/background.jpg") 0 / cover fixed;
 }
+
 .blog:not(:last-child) {
     margin-bottom: 1.5em;
     border-bottom: 1px solid rgba(252, 250, 255, 0.7);
@@ -11,34 +12,57 @@ body{
     margin-top: 0.5em;
 }
 
-.blog_info{
+.blog_info {
     margin-bottom: 0;
 }
 
-.text-style{
+.text-style {
     text-indent: 2em;
 }
 
-.paginator-style{
+.paginator-style {
     text-align: center;
 }
 
-.blog_pre_next li{
+.blog_pre_next li {
     display: inline-block;
 }
 
-.blog_pre_next ul{
+.blog_pre_next ul {
     display: none;
 }
 
-.blog_pre{
+.blog_pre {
     float: left;
 }
 
-.blog_next{
-    float:right;
+.blog_next {
+    float: right;
 }
 
-.blog_background{
+.blog_background {
     background: rgba(234, 240, 255, 0.8);
+}
+
+
+/*每日一图样式*/
+.pic_bot {
+    position: absolute;
+    top: 35%;
+    left: 30%;
+}
+
+.pic_bot a {
+    color: #fcfaff;
+    text-decoration: none;
+}
+
+.pic_bot a:hover {
+    color: #fcfaff;
+    text-decoration: none;
+}
+
+/*导航栏样式*/
+.bg_color{
+    background-color: rgba(252, 250, 255, 0.8) !important;
 }

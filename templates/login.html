@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>登录</title>
+    <link rel="stylesheet" href="{% static 'blog_page.css' %}">
     <link rel="stylesheet" href="{% static 'login.css' %}">
     <link rel="stylesheet" href="{% static 'base.css' %}">
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
@@ -14,7 +15,7 @@
     <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
 </head>
 <body>
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div class="navbar navbar-default navbar-fixed-top bg_color" role="navigation">
     <div class="container-fluid">
         <div class="nabar-header">
             <a class="navbar-brand" href="{% url 'home' %}">Hk_Mayfly的博客</a>
@@ -35,7 +36,7 @@
                     <a href="{% url 'blog_list' %}">博客</a>
                 </li>
                 <li>
-                    <a href="#">每日一图</a>
+                    <a href="{% url 'daily_photo' %}">每日一图</a>
                 </li>
             </ul>
             <form class="navbar-form navbar-left">

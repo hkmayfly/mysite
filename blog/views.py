@@ -113,65 +113,65 @@ def blogs_with_date(request, year, month):
     return render(request, 'blog_with_date.html', context)
 
 
-# def daily_photo(request):  # 爬虫
-#     class Glob:
-#         def __init__(self):
-#             self.i = 1
-#
-#     GL = Glob()
-#
-#     headers = {
-#         'Host': 'wall.alphacoders.com',
-#         'Referer': 'https://wall.alphacoders.com/by_favorites.php?quickload=807801&page=1',
-#         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36',
-#         'X-Requested-With': 'XMLHttpRequest'
-#     }
-#
-#     def get_page(page):
-#         params = {
-#             # 'search':'fantasy+tiger',
-#             'quickload': '807801',
-#             'page': page,
-#         }
-#         base_url = 'https://wall.alphacoders.com/featured.php?'
-#         url = base_url + urlencode(params)
-#         try:
-#             resp = requests.get(url, headers=headers)
-#             print(url)
-#             # print('ok')
-#             if resp.status_code == 200:
-#                 return resp.text
-#         except requests.ConnectionError:
-#             print('no1')
-#             return None
-#
-#     def get_imageurl(html):
-#         result = re.findall('[a-zA-z]+://images+[^\s]+jpg', html)
-#         return result
-#
-#     def main(page):
-#         GL.i = 0
-#         html = get_page(page)
-#         result = get_imageurl(html)
-#         file_name = 'D:\\Project\\Myblog\\mysite\\blog\\static' + os.path.sep + str(page) + '页'
-#         if not os.path.exists(file_name):
-#             os.makedirs(file_name)
-#         # if not os.path.exists(file_path):
-#         # os.makedirs(file_path)
-#         for url in result:
-#             with open(file_name + os.path.sep + str(page) + '-' + str(GL.i) + '.jpg', 'wb') as f:
-#                 content = re.sub('-+[3-4]\d{2}-', '-1920-', url)
-#                 print(content)
-#                 image = requests.get(content)
-#                 f.write(image.content)
-#                 # time.sleep(1)
-#                 GL.i += 1
-#
-#     if __name__ == '__main__':
-#         pool = Pool()
-#         Scope = ([i for i in range(1, 31)])
-#         pool.map(main, Scope)
-#         pool.close()
-#         pool.join()
-#
-#     return render(request, 'daily_photo.html')
+def daily_photo(request):  # 爬虫
+    class Glob:
+        def __init__(self):
+            self.i = 1
+
+    GL = Glob()
+
+    headers = {
+        'Host': 'wall.alphacoders.com',
+        'Referer': 'https://wall.alphacoders.com/by_favorites.php?quickload=807801&page=1',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36',
+        'X-Requested-With': 'XMLHttpRequest'
+    }
+
+    def get_page(page):
+        params = {
+            # 'search':'fantasy+tiger',
+            'quickload': '807801',
+            'page': page,
+        }
+        base_url = 'https://wall.alphacoders.com/featured.php?'
+        url = base_url + urlencode(params)
+        try:
+            resp = requests.get(url, headers=headers)
+            print(url)
+            # print('ok')
+            if resp.status_code == 200:
+                return resp.text
+        except requests.ConnectionError:
+            print('no1')
+            return None
+
+    def get_imageurl(html):
+        result = re.findall('[a-zA-z]+://images+[^\s]+jpg', html)
+        return result
+
+    def main(page):
+        GL.i = 0
+        html = get_page(page)
+        result = get_imageurl(html)
+        file_name = 'D:\\Project\\Myblog\\mysite\\blog\\static\\img\\' + os.path.sep + str(page) + '页'
+        if not os.path.exists(file_name):
+            os.makedirs(file_name)
+        # if not os.path.exists(file_path):
+        # os.makedirs(file_path)
+        for url in result:
+            with open(file_name + os.path.sep + str(page) + '-' + str(GL.i) + '.jpg', 'wb') as f:
+                content = re.sub('-+[3-4]\d{2}-', '-1920-', url)
+                print(content)
+                image = requests.get(content)
+                f.write(image.content)
+                # time.sleep(1)
+                GL.i += 1
+
+    if __name__ == '__main__':
+        pool = Pool()
+        Scope = ([i for i in range(1, 31)])
+        pool.map(main, Scope)
+        pool.close()
+        pool.join()
+
+    return render(request, 'daily_photo.html')

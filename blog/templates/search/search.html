@@ -5,15 +5,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--针对IE浏览器使用最新标签-->
     <meta name="viewport" content="width=device-width, initial-scale=1"><!--响应式布局-->
-    <title>Hk_Mayfly博客|首页</title>
-    <link rel="stylesheet" href="{% static 'home.css' %}">
+    <title>搜索</title>
     <link rel="stylesheet" href="{% static 'base.css' %}">
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
     <script type="text/javascript" src="{% static 'jquery.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
 </head>
 <body>
-<div class="navbar navbar-default navbar-fixed-top bg_color" role="navigation" style="background-color: rgba(252, 250, 255, 0.8);">
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <div class="nabar-header">
             <a class="navbar-brand" href="{% url 'home' %}">Hk_Mayfly的博客</a>
@@ -27,14 +26,14 @@
         </div>
         <div class="collapse navbar-collapse" id="target-1">
             <ul class="nav navbar-nav">
-                <li class="active">
+                <li>
                     <a href="{% url 'home' %}">首页</a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="{% url 'blog_list' %}">博客</a>
                 </li>
                 <li>
-                    <a href="{% url 'daily_photo' %}">每日一图</a>
+                    <a href="#">每日一图</a>
                 </li>
             </ul>
             <form class="navbar-form navbar-left">
@@ -52,8 +51,8 @@
                             在线：{{ request.session.user_name }}
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{%  url 'register' %}">注册</a></li>
-                             <li><a href="http://127.0.0.1:8000/admin/">管理员</a></li>
+                            <li><a href="{% url 'register' %}">注册</a></li>
+                            <li><a href="http://127.0.0.1:8000/admin/">管理员</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{% url 'logout' %}">退出</a></li>
                         </ul>
@@ -73,23 +72,40 @@
         </div>
     </div>
 </div>
-<div class="img-responsive home_pic">
-    <img src="{% static 'img/home.gif' %}">
-</div>
-<div class="home-content">
-    <h3>Hk_Mayfly的博客</h3>
-</div>
+<h2>Search</h2>
+    <form method="get" action=".">
+        <table>
+            {{ form.as_table }}
+            <tr>
+                <td> </td>
+                <td>
+                    <input type="submit" value="Search">
+                </td>
+            </tr>
+        </table>
 
-<div>
-    <!-- 音乐播放器 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-    <div class="aplayer" data-id="2834943612" data-server="netease" data-type="playlist" data-fixed="true"
-         data-autoplay="true"
-         data-volume="0.6"></div>
-    <script>var meting_api = 'http://api.mizore.cn/meting/api.php?server=:server&type=:type&id=:id'</script>
-    <script src="http://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
-    <script src="http://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script>
+        {% if query %}
+            <h3>Results</h3>
 
-</div>
+            {% for result in page.object_list %}
+                <p>
+                    <a href="{{ result.object.get_absolute_url }}">{{ result.object.title }}</a>
+                </p>
+            {% empty %}
+                <p>No results found.</p>
+            {% endfor %}
+
+            {% if page.has_previous or page.has_next %}
+                <div>
+                    {% if page.has_previous %}<a href="?q={{ query }}&page={{ page.previous_page_number }}">{% endif %}« Previous{% if page.has_previous %}</a>{% endif %}
+                    |
+                    {% if page.has_next %}<a href="?q={{ query }}&page={{ page.next_page_number }}">{% endif %}Next »{% if page.has_next %}</a>{% endif %}
+                </div>
+            {% endif %}
+        {% else %}
+            {# Show some example queries to run, maybe query syntax, something else? #}
+        {% endif %}
+    </form>
+
 </body>
 </html>

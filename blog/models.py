@@ -1,4 +1,3 @@
-from django.db import models
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
@@ -33,3 +32,13 @@ class Blog(models.Model):
         self.reader_num += 1
         # 指定更新reader_num防止全部更新，文章变成最新文章
         self.save(update_fields=['reader_num'])
+
+
+# class Note(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+#     pub_date = models.DateTimeField()
+#     title = models.CharField(max_length=200)
+#     body = models.TextField()
+#
+#     def __str__(self):
+#         return self.title
